@@ -20,13 +20,10 @@ export class NaiveBankAccountMother {
   }
 
   static opened(id?: NaiveBankAccountId, currency?: Currency): NaiveBankAccount {
-    return this.create(
-      id ?? NaiveBankAccountIdMother.random(),
-      BalanceMother.zero(),
-      currency ?? CurrencyMother.random(),
-      NaiveBankAccountStatus.OPEN,
-      new Transactions([])
-    );
+    const accountId = id ?? NaiveBankAccountIdMother.random();
+    const accountCurrency = currency ?? CurrencyMother.random();
+    
+    return NaiveBankAccount.open(accountId, accountCurrency);
   }
 
   static closed(id?: NaiveBankAccountId, currency?: Currency): NaiveBankAccount {
